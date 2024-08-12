@@ -1,39 +1,23 @@
 pipeline {
     agent any
-    
-    tools {
-        //To specify the maven to use
-        maven "mvn3.9.8"
-    }
-    
+
     stages {
-        stage('Checkout'){
-            steps{
+        stage('Checkout') {
+            steps {
                 //Checkout the source repo from scm
-                git 'https://github.com/vincebed1/CI-CD-Project.git'
+                git 'Building..'
             }
         }
-        stage('Build'){
-            steps{
-                //Use maven to build the project
-                sh 'mvn clean package'
+        stage('Test') {
+            steps {
+                //Checkout the source repo from scm
+                git 'Testing..'
             }
         }
-        stage('Test'){
-            steps{
-                //Run tests if applicable
-                sh 'mvn test'
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
-        }
-    }
-    post{
-        success{
-            //This will be executed if the pipeline execution is successful
-            echo 'Pipeline executed successfully!'
-        }
-        failure{
-            //This will be executed if the pipeline execution fails
-            echo 'Pipeline failed!'
         }
     }
 }
