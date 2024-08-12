@@ -22,3 +22,17 @@ pipeline {
         }
     }
 }
+
+post {
+        always {
+            echo 'Cleaning up...'
+            // Add any cleanup steps here, if needed
+        }
+        success {
+            echo 'Build and deploy successful!'
+        }
+        failure {
+            echo 'Build or deploy failed.'
+        }
+    }
+}
