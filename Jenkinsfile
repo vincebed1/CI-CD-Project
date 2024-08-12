@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 //Build the java code
-                java 'CI_CD'
+                java 'CI_CD.java'
             }
         }
         stage('Deploy') {
