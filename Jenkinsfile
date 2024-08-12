@@ -5,13 +5,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 //Checkout the source repo from scm
-                git 'Building..'
+                git 'https://github.com/vincebed1/CI-CD-Project.git'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                //Checkout the source repo from scm
-                git 'Testing..'
+                //Build the java code
+                java 'CI_CD'
             }
         }
         stage('Deploy') {
