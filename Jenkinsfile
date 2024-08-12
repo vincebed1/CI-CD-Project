@@ -15,15 +15,20 @@ pipeline {
             }
         }
         stage('Deploy') {
-            //Run the compiled Java class
+            // Run the compiled Java class
             steps {
                 sh 'java CI_CD'
             }
         }
+        stage('Debug Environment') {
+            steps {
+                sh 'echo $JAVA_HOME'
+                sh 'java -version'
+            }
+        }
     }
-}
 
-post {
+    post {
         always {
             echo 'Cleaning up...'
             // Add any cleanup steps here, if needed
