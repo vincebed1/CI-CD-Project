@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                //Checkout the source repo from scm
+                // Checkout the source repo from SCM
                 git 'https://github.com/vincebed1/CI-CD-Project.git'
             }
         }
         stage('Build') {
             steps {
-                //Build the java code
-                java 'CI_CD.java'
+                // Compile the Java code
+                sh 'javac CI_CD.java'
             }
         }
         stage('Deploy') {
