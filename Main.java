@@ -1,22 +1,12 @@
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);    
+        // Hard-coded values
+        String name = "Alice";
+        int age = 30;
+        String food = "Pizza";
         
-        System.out.println("What is your name? ");
-        String name = scanner.nextLine();
-        
-        System.out.println("How old are you? ");
-        int age = scanner.nextInt();
-        
-        // Consume the leftover newline character
-        scanner.nextLine();
-        
-        System.out.println("What is your favourite food? ");
-        String food = scanner.nextLine();
-            
+        // Output the hard-coded values
         System.out.println("Hello " + name);
         System.out.println("You are " + age + " years old ");
         System.out.println("You like " + food);
