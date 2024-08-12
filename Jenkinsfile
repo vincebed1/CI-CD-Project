@@ -1,11 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        GIT_REPO_URL = 'https://github.com/vincebed1/CI-CD-Project.git'
+        BRANCH = 'master'
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the source repo from SCM
-                git 'https://github.com/vincebed1/CI-CD-Project.git'
+                git branch: "${BRANCH}", url: "${GIT_REPO_URL}"
             }
         }
         stage('Build') {
@@ -15,13 +20,14 @@ pipeline {
             }
         }
         stage('Deploy') {
-            // Run the compiled Java class
             steps {
+                // Run the compiled Java class
                 sh 'java CI_CD'
             }
         }
         stage('Debug Environment') {
             steps {
+                // Print Java environment details
                 sh 'echo $JAVA_HOME'
                 sh 'java -version'
             }
