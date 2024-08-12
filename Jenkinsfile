@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO_URL = 'https://github.com/vincebed1/CI-CD-Project.git'
-        BRANCH = 'master'
+        BRANCH = 'main'
     }
 
     stages {
