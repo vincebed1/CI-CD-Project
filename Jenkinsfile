@@ -15,8 +15,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            //Run the compiled Java class
             steps {
-                echo 'Deploying....'
+                sh 'java CI_CD'
             }
         }
     }
