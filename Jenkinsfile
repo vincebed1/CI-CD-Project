@@ -16,13 +16,13 @@ pipeline {
         stage('Build') {
             steps {
                 // Compile the Java code
-                sh 'javac CI_CD.java'
+                sh 'javac Main.java'
             }
         }
         stage('Deploy') {
             steps {
                 // Run the compiled Java class
-                sh 'java CI_CD'
+                sh 'java Main'
             }
         }
         stage('Debug Environment') {
