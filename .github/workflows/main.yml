@@ -1,0 +1,51 @@
+name: CI-CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      GIT_REPO_URL: 'https://github.com/vincebed1/CI-CD-Project.git'
+      BRANCH: 'main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.GIT_REPO_URL }}
+          ref: ${{ env.BRANCH }}
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Build
+        run: javac Main.java
+
+      - name: Deploy
+        run: java Main
+
+      - name: Debug Environment
+        run: |
+          echo $JAVA_HOME
+          java -version
+
+  post:
+    always:
+      - name: Cleanup
+        run: echo 'Cleaning up...'
+
+    success:
+      - name: Success Notification
+        run: echo 'Build and deploy successful!'
+
+    failure:
+      - name: Failure Notification
+        run: echo 'Build or deploy failed.'
