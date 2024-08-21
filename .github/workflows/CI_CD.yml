@@ -37,15 +37,14 @@ jobs:
           echo $JAVA_HOME
           java -version
 
-  post:
-    always:
       - name: Cleanup
+        if: always()
         run: echo 'Cleaning up...'
 
-    success:
       - name: Success Notification
+        if: success()
         run: echo 'Build and deploy successful!'
 
-    failure:
       - name: Failure Notification
+        if: failure()
         run: echo 'Build or deploy failed.'
