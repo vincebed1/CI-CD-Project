@@ -32,6 +32,7 @@ jobs:
         run: |
           echo $JAVA_HOME
           java -version
+
       - name: Cleanup
         if: always()
         run: echo 'Cleaning up...'
@@ -43,3 +44,37 @@ jobs:
       - name: Failure Notification
         if: failure()
         run: echo 'Build or deploy failed.'
+
+name: GitHub actions - To Test Repo - Trigger Jenkins Job
+
+on:
+  push:
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.7.0
+        with:
+          checkout-fetch-depth: 0
+          java-version: 17
+          java-distribution: temurin
+          maven-version: 3.9.8
+    
+      - name: Test with Maven
+        run: mvn -B test --file pom.xml
+    
+      - name: connect to Lab and trigger jenkins job
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest 
+        with:
+          host: ${{ secrets.LAB_HOSTNAME }}
+          user: ${{ secrets.LAB_USERNAME }}
+          pass: ${{ secrets.LAB_PASSWORD }}
+          port: ${{ secrets.LAB_PORT }}
+          connect_timeout: 10s 
+          first_ssh: |
+            sudo curl -I -u admin:11ca26c95c3bb4a1bd6a75eb17d6ed1efd http://localhost:8080/job/Remote-Trigger/build?token=CI-CD-Token
