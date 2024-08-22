@@ -48,10 +48,10 @@ jobs:
       - name: Connect to Lab and Trigger Jenkins Job
         uses: cross-the-world/ssh-pipeline@v1.2.0
         with:
-          host: ${{ secrets.VM_HOSTNAME }}
+          host: "172.19.199.101"
           user: ${{ secrets.VM_USERNAME }}
           pass: ${{ secrets.VM_PASSWORD }}
-          port: ${{ secrets.VM_PORT }}
+          port: 22
           connect_timeout: 60s
           script: |
             sudo curl -I -u admin:1116d39b1ebcd42a0b3968bbfa82e15f714 http://localhost:8080/job/Remote-Trigger/build?token=CICD-Token
