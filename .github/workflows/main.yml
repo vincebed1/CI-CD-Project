@@ -46,7 +46,7 @@ jobs:
         run: echo 'Build or deploy failed.'
   
       - name: Connect to Lab and Trigger Jenkins Job
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest 
+        uses: cross-the-world/ssh-pipeline@v1.2.0 
         with:
           host: ${{ secrets.VM_HOSTNAME }}
           user: ${{ secrets.VM_USERNAME }}
