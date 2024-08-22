@@ -54,4 +54,4 @@ jobs:
           port: ${{ secrets.VM_PORT }}
           connect_timeout: 60s 
           first_ssh: |
-            sudo curl -I -u admin:11ca26c95c3bb4a1bd6a75eb17d6ed1efd http://localhost:8080/job/Remote-Trigger/build?token=CI-CD-Token
+            sudo curl -I -u admin:11ca26c95c3bb4a1bd6a75eb17d6ed1efd http://localhost:8080/job/Remote-Trigger/build?token=CICD-Token
